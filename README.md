@@ -6,6 +6,12 @@ A small collection of utility functions for programming microcontrollers in neov
 - Nvim >= 0.5
 - [platformio](https://docs.platformio.org/en/latest/what-is-platformio.html)
 
+# Example setup
+
+```vim
+autocmd FileType cpp,c,arduino,dosini lua require'microcontroller'.setup()
+```
+
 ## Commands
 
 `PioBuild`
@@ -22,6 +28,9 @@ Print controllers (that is boards) defined in the `platformio.ini` project file
 
 `PioCompiledb`
 Create a compile_commands.json file and put in the root of the project (for clangd language server protocols)
+
+`PioCheck`
+Run static code analysis
 
 Open references for specific boards:
 

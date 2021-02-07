@@ -145,6 +145,13 @@ function M.monitor()
 	M.terminal(cmd)
 end
 
+function M.check()
+	local cmd = "pio check"
+	M.terminal(cmd)
+end
+
+
+---------------------------------------------------
 -- Help / reference functions
 function M.open_in_browser(url)
 	M.silent_shell(browser .. " " .. url )
