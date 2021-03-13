@@ -94,6 +94,12 @@ function M.has_pio_file()
 		if f~=nil then io.close(f) return true else return false end
 end
 
+function M.has_makefile()
+		local name = "Makefile"
+		local f=io.open(name,"r")
+		if f~=nil then io.close(f) return true else return false end
+end
+
 -- get all lines from a file, returns an empty
 -- list/table if the file does not exist
 function M.lines_from(file)
@@ -157,6 +163,11 @@ function M.open_in_browser(url)
 	M.silent_shell(browser .. " " .. url )
 end
 
+function M.daisydoc()
+	local url = "https://electro-smith.github.io/DaisySP/index.html"
+	M.open_in_browser(url)
+end
+
 function M.teensypins()
 	local url = "https://www.pjrc.com/teensy/pinout.html"
 	M.open_in_browser(url)
@@ -171,5 +182,26 @@ function M.arduinoref()
 	local url = "https://www.arduino.cc/reference/en/"
 	M.open_in_browser(url)
 end
+
+-- Daisy stuff
+--
+function M.make()
+	vim.cmd("!make clean; make")
+end
+
+function M.make_upload_daisy()
+	vim.cmd("!make clean; make; make program-dfu")
+end
+
+-- For Daisy uploading
+function M.upload_dfu()
+	vim.cmd("! make program-dfu")
+end
+
+function M.compiledb()
+	local target_dir = "build"
+	vim.cmd(string.format("! compiledb make; mv compile_commands.json %s/", target_dir))
+end
+
 
 return M

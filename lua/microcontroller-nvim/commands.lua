@@ -1,4 +1,5 @@
 local commands = {
+	"CompileDB lua require('microcontroller').compiledb()",
 	"PioCompiledb lua require('microcontroller').compiletags()",
 	"PioBuild lua require('microcontroller').build()",
 	"PioUpload lua require('microcontroller').upload()",
@@ -8,6 +9,9 @@ local commands = {
 	"TeensyPinout lua require('microcontroller').teensypins()",
 	"TeensySpecs lua require('microcontroller').teensyspecs()",
 	"ArduinoRef lua require('microcontroller').arduinoref()",
+	"DaisyMake lua require('microcontroller').make()",
+	"DaisyMakeUpload lua require('microcontroller').make_upload_daisy()",
+	"DaisyDocs lua require('microcontroller').daisydoc()"
 }
 
 for index = 1, #commands do
