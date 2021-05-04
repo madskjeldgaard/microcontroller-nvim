@@ -15,7 +15,8 @@ autocmd FileType cpp,c,arduino,dosini lua require'microcontroller'.setup()
 ## Commands
 
 `PioBuild`
-Build code for microcontroller
+Build code for microcontroller. This will run vim's built in `:make`. If you are in a platformio directory it will run `pio run -t upload`. If any errors occur, they are populated in the quick fix list and may be navigated using `:cnext` and `:cprev` for example.
+
 
 `PioUpload`
 Compile and upload code to microcontroller
