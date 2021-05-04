@@ -2,7 +2,6 @@
 -- Most of this is based around the Platformio Core software
 local M = {}
 
-
 local browser = vim.g.microcontroller_browser or "firefox"
 local mapkeys = vim.g.microcontroller_default_keymaps or true
 
@@ -12,6 +11,8 @@ local vimcmd = api.nvim_command
 function M.setup()
 	-- Register commands
 	require'microcontroller-nvim/commands'
+
+	vim.cmd("autocmd FileType cpp lua require'microcontroller'.set_make_prgm()")
 
 	-- Default keymaps
 	if mapkeys == true then
@@ -52,7 +53,7 @@ function M.keymaps()
 end
 
 function M.terminal(cmd)
-	vimcmd("vnew")
+	vimcmd("vsplit")
 	vimcmd("terminal " .. cmd) -- TODO: Exit when exit code is 0
 end
 
@@ -66,8 +67,13 @@ function M.upload()
 end
 
 function M.build()
-	local cmd = "pio run && exit"
-	M.terminal(cmd)
+	vim.cmd("make")
+end
+
+function M.set_make_prgm()
+	if M.has_pio_file() then
+		vim.cmd("set makeprg=pio\\ run\\ -t\\ upload")
+	end
 end
 
 -- This is hacky
