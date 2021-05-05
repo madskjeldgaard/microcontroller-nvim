@@ -62,11 +62,21 @@ function M.silent_shell(cmd)
 end
 
 function M.upload()
-	local cmd = "pio run -t upload && exit"
-	M.terminal(cmd)
+	vim.cmd("set makeprg=pio\\ -t\\ upload")
+	vim.cmd("make")
 end
 
 function M.build()
+	vim.cmd("make")
+end
+
+function M.pio_clean()
+	vim.cmd("set makeprg=pio\\ -t\\ clean")
+	vim.cmd("make")
+end
+
+function M.pio_check()
+	vim.cmd("set makeprg=pio\\ check\\ --skip-packages")
 	vim.cmd("make")
 end
 
@@ -154,11 +164,6 @@ end
 
 function M.monitor()
 	local cmd = "pio device monitor"
-	M.terminal(cmd)
-end
-
-function M.check()
-	local cmd = "pio check"
 	M.terminal(cmd)
 end
 
