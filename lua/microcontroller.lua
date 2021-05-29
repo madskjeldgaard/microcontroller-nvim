@@ -62,16 +62,18 @@ function M.silent_shell(cmd)
 end
 
 function M.upload()
-	vim.cmd("set makeprg=pio\\ -t\\ upload")
+	vim.cmd("set makeprg=pio\\ run\\ -t\\ upload")
 	vim.cmd("make")
 end
 
 function M.build()
+	vim.cmd("set makeprg=pio\\ run")
+
 	vim.cmd("make")
 end
 
 function M.pio_clean()
-	vim.cmd("set makeprg=pio\\ -t\\ clean")
+	vim.cmd("set makeprg=pio\\ run\\ -t\\ clean")
 	vim.cmd("make")
 end
 
