@@ -4,7 +4,24 @@ A small collection of utility functions for programming microcontrollers in neov
 # Requirements
 
 - Nvim >= 0.5
+- [nvim-fzf](https://github.com/vijaymarupudi/nvim-fzf)
 - [platformio](https://docs.platformio.org/en/latest/what-is-platformio.html)
+
+## Installation
+
+Installation using packer:
+
+```lua
+use {
+	'~/code/vim-plugins/microcontroller-nvim',
+	branch = "develop",
+	--ft = {'cpp','c','arduino','dosini'},
+	config = function()
+		require'microcontroller'.setup()
+		require'microcontroller'.set_make_prgm()
+	end
+}
+```
 
 # Example setup
 
@@ -14,9 +31,12 @@ autocmd FileType cpp,c,arduino,dosini lua require'microcontroller'.setup()
 
 ## Commands
 
+`PioBoards`
+
+Fuzzy search the board library and insert the selected in your `platformio.ini` file.
+
 `PioBuild`
 Build code for microcontroller. This will run vim's built in `:make`. If you are in a platformio directory it will run `pio run -t upload`. If any errors occur, they are populated in the quick fix list and may be navigated using `:cnext` and `:cprev` for example.
-
 
 `PioUpload`
 Compile and upload code to microcontroller

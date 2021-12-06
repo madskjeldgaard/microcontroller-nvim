@@ -10,7 +10,7 @@ local vimcmd = api.nvim_command
 
 function M.setup()
 	-- Register commands
-	require'microcontroller-nvim/commands'
+	require'microcontroller-nvim.commands'
 
 	vim.cmd("autocmd FileType cpp lua require'microcontroller'.set_make_prgm()")
 
@@ -169,7 +169,6 @@ function M.monitor()
 	M.terminal(cmd)
 end
 
-
 ---------------------------------------------------
 -- Help / reference functions
 function M.open_in_browser(url)
@@ -216,5 +215,8 @@ function M.compiledb()
 	vim.cmd(string.format("! compiledb make; mv compile_commands.json %s/", target_dir))
 end
 
+function M.boards()
+	require"microcontroller-nvim.boards".boards()
+end
 
 return M
