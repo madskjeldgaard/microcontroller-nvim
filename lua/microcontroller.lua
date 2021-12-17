@@ -195,19 +195,30 @@ function M.arduinoref()
 	M.open_in_browser(url)
 end
 
+function M.teensyaudiolib()
+	local url = "https://www.pjrc.com/teensy/gui/index.html"
+	M.open_in_browser(url)
+end
+
+function M.pipicosdk()
+	local url = "https://raspberrypi.github.io/pico-sdk-doxygen/"
+	M.open_in_browser(url)
+end
+
 -- Daisy stuff
---
-function M.make()
-	vim.cmd("!make clean; make")
+function M.makeclean()
+	vim.cmd("set makeprg=make\\ clean&&make")
+	vim.cmd("make")
 end
 
 function M.make_upload_daisy()
-	vim.cmd("!make clean; make; make program-dfu")
+	vim.cmd("set makeprg=make\\ clean&&\\ make&&\\ make\\ program")
+	vim.cmd("make")
 end
 
--- For Daisy uploading
-function M.upload_dfu()
-	vim.cmd("! make program-dfu")
+function M.make_upload_daisy_dfu()
+	vim.cmd("set makeprg=make\\ clean&&\\ make&&\\ make\\ program-dfu")
+	vim.cmd("make")
 end
 
 function M.compiledb()
