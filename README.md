@@ -13,7 +13,7 @@ Installation using packer:
 
 ```lua
 use {
-	'~/code/vim-plugins/microcontroller-nvim',
+	'madskjeldgaard/microcontroller-nvim',
 	branch = "develop",
 	--ft = {'cpp','c','arduino','dosini'},
 	config = function()
