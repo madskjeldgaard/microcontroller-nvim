@@ -64,4 +64,11 @@ function M.table_keys(tableIn)
 	return result
 end
 
+-- Help / reference functions
+local browser = vim.g.microcontroller_browser or "firefox"
+
+function M.open_link(link)
+	vim.cmd("silent exe '! " .. browser .. " " .. link .. " &'")
+end
+
 return M

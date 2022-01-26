@@ -2,11 +2,12 @@
 -- Most of this is based around the Platformio Core software
 local M = {}
 
-local browser = vim.g.microcontroller_browser or "firefox"
 local mapkeys = vim.g.microcontroller_default_keymaps or true
 
 local api = vim.api
 local vimcmd = api.nvim_command
+
+M.docs = require"microcontroller-nvim/docs"
 
 function M.setup()
 	-- Register commands
@@ -170,40 +171,6 @@ function M.monitor()
 end
 
 ---------------------------------------------------
--- Help / reference functions
-function M.open_in_browser(url)
-	M.silent_shell(browser .. " " .. url )
-end
-
-function M.daisydoc()
-	local url = "https://electro-smith.github.io/DaisySP/index.html"
-	M.open_in_browser(url)
-end
-
-function M.teensypins()
-	local url = "https://www.pjrc.com/teensy/pinout.html"
-	M.open_in_browser(url)
-end
-
-function M.teensyspecs()
-	local url = "https://www.pjrc.com/teensy/techspecs.html"
-	M.open_in_browser(url)
-end
-
-function M.arduinoref()
-	local url = "https://www.arduino.cc/reference/en/"
-	M.open_in_browser(url)
-end
-
-function M.teensyaudiolib()
-	local url = "https://www.pjrc.com/teensy/gui/index.html"
-	M.open_in_browser(url)
-end
-
-function M.pipicosdk()
-	local url = "https://raspberrypi.github.io/pico-sdk-doxygen/"
-	M.open_in_browser(url)
-end
 
 -- Daisy stuff
 function M.makeclean()

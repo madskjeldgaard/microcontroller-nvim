@@ -8,14 +8,10 @@ local commands = {
 	"PioCheck lua require('microcontroller').pio_check()",
 	"PioClean lua require('microcontroller').pio_clean()",
 	"PioEnv lua require('microcontroller').print_env()",
-	"TeensyPinout lua require('microcontroller').teensypins()",
-	"TeensySpecs lua require('microcontroller').teensyspecs()",
-	"TeensyAudioLib lua require('microcontroller').teensyaudiolib()",
-	"ArduinoRef lua require('microcontroller').arduinoref()",
 	"DaisyMake lua require('microcontroller').makeclean()",
 	"DaisyMakeUpload lua require('microcontroller').make_upload_daisy()",
 	"DaisyMakeUploadDFU lua require('microcontroller').make_upload_daisy_dfu()",
-	"DaisyDocs lua require('microcontroller').daisydoc()",
+	"MCUDocs lua require('microcontroller').docs.open()"
 }
 
 for index = 1, #commands do
