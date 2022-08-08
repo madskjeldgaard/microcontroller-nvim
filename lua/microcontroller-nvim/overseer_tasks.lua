@@ -1,5 +1,23 @@
 local status, overseer = pcall(require, 'overseer')
 
+--- Check if a file or directory exists in this path
+function exists(file)
+   local ok, err, code = os.rename(file, file)
+   if not ok then
+      if code == 13 then
+         -- Permission denied, but it exists
+         return true
+      end
+   end
+   return ok, err
+end
+
+--- Check if a directory exists in this path
+function isdir(path)
+   -- "/" works on both Unix and Windows
+   return exists(path.."/")
+end
+
 if status then
 	-- Build
 	overseer.register_template({
@@ -43,13 +61,9 @@ if status then
 			-- A string or list of strings
 			-- Only matches when current buffer is one of the listed filetypes
 			filetype = {"c", "cpp", "ino", "h", "hpp", "ini"},
-			-- A string or list of strings
-			-- Only matches when cwd is inside one of the listed dirs
-			-- dir = "/home/user/my_project",
-			-- Arbitrary logic for determining if task is available
+				-- Only activate if it is in a platformio directory
 			callback = function(search)
-				-- print(vim.inspect(search))
-				return true
+				return isdir(search.dir .. "/.pio")
 			end,
 		},
 	})
@@ -96,13 +110,8 @@ if status then
 			-- A string or list of strings
 			-- Only matches when current buffer is one of the listed filetypes
 			filetype = {"c", "cpp", "ino", "h", "hpp", "ini"},
-			-- A string or list of strings
-			-- Only matches when cwd is inside one of the listed dirs
-			-- dir = "/home/user/my_project",
-			-- Arbitrary logic for determining if task is available
 			callback = function(search)
-				-- print(vim.inspect(search))
-				return true
+				return isdir(search.dir .. "/.pio")
 			end,
 		},
 	})
@@ -149,14 +158,9 @@ if status then
 			-- A string or list of strings
 			-- Only matches when current buffer is one of the listed filetypes
 			filetype = {"c", "cpp", "ino", "h", "hpp", "ini"},
-			-- A string or list of strings
-			-- Only matches when cwd is inside one of the listed dirs
-			-- dir = "/home/user/my_project",
-			-- Arbitrary logic for determining if task is available
 			callback = function(search)
-				-- print(vim.inspect(search))
-				return true
-			end,
+				return isdir(search.dir .. "/.pio")
+			end
 		},
 	})
 end
