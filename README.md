@@ -25,12 +25,6 @@ use {
 }
 ```
 
-# Example setup
-
-```vim
-autocmd FileType cpp,c,arduino,dosini lua require'microcontroller'.setup()
-```
-
 # Usage
 
 If you have [overseer.nvim](https://github.com/stevearc/overseer.nvim), the easiest thing to do is run `:OverseerRun` in a platformio project. This will give you a range of possibilities for compiling, building, checking and uploading the code in a way that is tigtly integrated with nvim, especially errors. See the overseer docs for more information.
