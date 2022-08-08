@@ -3,9 +3,10 @@ A small collection of utility functions for programming microcontrollers in neov
 
 # Requirements
 
-- Nvim >= 0.5
+- Nvim >= 0.7
 - [nvim-fzf](https://github.com/vijaymarupudi/nvim-fzf)
 - [platformio](https://docs.platformio.org/en/latest/what-is-platformio.html)
+- [overseer.nvim](https://github.com/stevearc/overseer.nvim)(optional)
 
 ## Installation
 
@@ -16,6 +17,7 @@ use {
 	'madskjeldgaard/microcontroller-nvim',
 	branch = "develop",
 	--ft = {'cpp','c','arduino','dosini'},
+	requires = 'stevearc/overseer.nvim',
 	config = function()
 		require'microcontroller'.setup()
 		require'microcontroller'.set_make_prgm()
