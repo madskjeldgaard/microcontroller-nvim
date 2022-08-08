@@ -31,8 +31,24 @@ if status then
 				env = {},
 				components = {
 					"default",
-					"on_result_diagnostics",
-					["on_result_diagnostics_quickfix"] = {
+					{"on_output_parse", parser = {
+						-- Put the parser results into the 'diagnostics' field on the task result
+						diagnostics = {
+							-- Extract fields using lua patterns
+							{
+								"extract",
+								"^([^%s].+):(%d+):(%d+): (.+)$",
+								"filename",
+								"lnum",
+								"col",
+								"text"
+							},
+						}
+					}},
+					{"on_result_diagnostics",
+						remove_on_restart = true,
+					},
+					{"on_result_diagnostics_quickfix",
 						open = true
 					}
 				},
@@ -61,7 +77,30 @@ if status then
 				name = "pioupload",
 				cwd = "",
 				env = { },
-				components = {"default"},
+				components = {
+					"default",
+					{"on_output_parse", parser = {
+						-- Put the parser results into the 'diagnostics' field on the task result
+						diagnostics = {
+							-- Extract fields using lua patterns
+							{
+								"extract",
+								"^([^%s].+):(%d+):(%d+): (.+)$",
+								"filename",
+								"lnum",
+								"col",
+								"text"
+							},
+						}
+					}},
+					{"on_result_diagnostics",
+						remove_on_restart = true,
+					},
+					{"on_result_diagnostics_quickfix",
+						open = true
+					},
+				},
+
 				metadata = { },
 			}
 		end,
@@ -83,11 +122,33 @@ if status then
 		builder = function(params)
 			return {
 				cmd = {'pio'},
-				args = {"check", "--verbose"},
+				args = {"check", "--verbose", "--skip-packages"},
 				name = "piocheck",
 				cwd = "",
 				env = {},
-				components = {"default"},
+				components = {
+					"default",
+					{"on_output_parse", parser = {
+						-- Put the parser results into the 'diagnostics' field on the task result
+						diagnostics = {
+							-- Extract fields using lua patterns
+							{
+								"extract",
+								"^([^%s].+):(%d+): (.+)$",
+								"filename",
+								"lnum",
+								"text"
+							},
+						}
+					}},
+					{"on_result_diagnostics",
+						remove_on_restart = true,
+					},
+					{"on_result_diagnostics_quickfix",
+						open = true
+					},
+
+				},
 				metadata = {},
 			}
 		end,
