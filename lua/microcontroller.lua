@@ -13,6 +13,8 @@ function M.setup()
 	-- Register commands
 	require'microcontroller-nvim.commands'
 
+	require'microcontroller-nvim.overseer_tasks'
+
 	vim.cmd("autocmd FileType cpp lua require'microcontroller'.set_make_prgm()")
 
 	-- Default keymaps
